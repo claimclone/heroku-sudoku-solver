@@ -29,8 +29,8 @@ suite('UnitTests', () => {
         })
     });
 
-    suite('Logic for a valid column placement', function(){
-        test('Logic for column placement', function(){
+    suite('Logic for column placement', function(){
+        test('Logic for a valid column placement', function(){
             assert.equal(solver.checkColPlacement('1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.','I',4,5), 'valid placement');
         });
         test('Logic for an invalid column placement', function(){
@@ -38,4 +38,12 @@ suite('UnitTests', () => {
         });
     });
     
+    suite('Logic for region placement', function(){
+        test('Logic for a valid region placement', function(){
+            assert.equal(solver.checkRegionPlacement('1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.','I',4,5), 'valid placement');
+        })
+        test('Logic for an invalid region placement', function(){
+            assert.equal(solver.checkRegionPlacement('1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.','I',4,8), 'invalid placement');
+        })
+    })
 });
