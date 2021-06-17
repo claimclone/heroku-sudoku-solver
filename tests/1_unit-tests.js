@@ -27,6 +27,15 @@ suite('UnitTests', () => {
         test('Logic handles an invalid row placement', function(){
             assert.equal(solver.checkRowPlacement('1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.','A',1,4), 'invalid placement');
         })
-    })
+    });
+
+    suite('Logic for a valid column placement', function(){
+        test('Logic for column placement', function(){
+            assert.equal(solver.checkColPlacement('1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.','I',4,5), 'valid placement');
+        });
+        test('Logic for an invalid column placement', function(){
+            assert.equal(solver.checkColPlacement('1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.','I',4,6), 'invalid placement');
+        });
+    });
     
 });

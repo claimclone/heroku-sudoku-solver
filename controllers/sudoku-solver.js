@@ -43,7 +43,36 @@ class SudokuSolver {
   }
 
   checkColPlacement(puzzleString, row, column, value) {
+    //validate puzzle string
+    if(this.validate(puzzleString) != 'valid'){
+      return this.validate(puzzleString);
+    }
 
+    const RowsEnum = Object.freeze({"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7, "I":8 });
+    //validate row, column, and value
+    const rowFormat = /[A-I]/i;
+
+    if(!row.toUpperCase().match(rowFormat) || !(1 >= column <= 9)){
+      return 'invalid coordinate';
+    }
+    if(!(1 >= value <= 9)){
+      return 'invalid value';
+    }
+
+    //check every placement in the column if it already contains the value
+    const rowStart = RowsEnum[row.toUpperCase()] * 9;
+    let columnPlacement = rowStart + column - 1;
+
+    while(columnPlacement - 9 > 0){
+      columnPlacement -= 9;
+    }
+    
+    for(let i = columnPlacement; i <= 81; i = i + 9){
+      if(puzzleString[i] == value){
+        return 'invalid placement';
+      }
+    }
+    return 'valid placement';
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
